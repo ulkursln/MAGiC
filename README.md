@@ -22,7 +22,8 @@ Speech and gaze are closely connected modalities in social interaction. MAGiC is
 ---
 
 ### WIKI
-**For instructions of how to install/compile/use the project please see [WIKI](https://github.com/TadasBaltrusaitis/OpenFace/wiki)**
+
+For instructions of how to install/compile/use the project please see [WIKI](https://github.com/TadasBaltrusaitis/OpenFace/wiki)
 
 ---
 
@@ -38,7 +39,7 @@ We welcome and appreciate contributions from the community. There are many ways 
 
 ### License
 
-[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/blob/master/LICENSE)
-MAGiC is licensed under the [GNU General Public License (GPL)]: LICENSE.txt
-You have to respect [OpenFace]:https://github.com/TadasBaltrusaitis/OpenFace, [Sphinx4]:https://github.com/cmusphinx/sphinx4, boost, TBB, dlib, and OpenCV licenses.
+[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://github.com/ulkursln/MAGiC/blob/master/LICENSE)
+MAGiC is licensed under the GNU General Public License (GPL).
+You have to respect [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace), [Sphinx4](https://github.com/cmusphinx/sphinx4), boost, TBB, dlib, and OpenCV licenses.
 Thank you!
