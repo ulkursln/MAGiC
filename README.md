@@ -12,59 +12,33 @@
 
 ### What it does
 
-`AIMSICD` attempts to detect IMSI-Catchers through [detection methods](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/230) such as these:
-    
-* Check [Tower Information Consistency](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/253)
-* Check [LAC/Cell ID Consistency](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/91)
-* Check [Neighboring Cell Info](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/264)
-* Prevent [silent app installations](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/151)
-* Monitor [Signal Strength](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/97)
-* Detect [silent SMS](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/glossary-of-terms#silent-sms)
-* Detect [FemtoCells](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/issues/6)
+Speech and gaze are closely connected modalities in social interaction. MAGiC is a tool for the analysis of social behavior. It enables researchers to overlay gaze data on top of dynamical scene recordings and associates it with the speech information at that moment. MAGiC expands the capacity of current eye tracking technologies by integrating automated face tracking to detect whether a human participant is looking at the interlocutor’s face, and if so, which part of the face is being looked at. Then, it integrates area-of-interest that is relative to the position of interlocutor's face,  with automatically segmented and manuaally annotated speech-data. Specifically, MAGiC provides functionalities for:
 
-Make sure to see our [app goals](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Development-Status#application-goals) and [development status](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Development-Status) as well as [technical overview](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Technical-Overview).
+* automatic speech and gaze analysis
+* visualizing and reviewing outcomes 
+* semi-automatically synchronizing multiple recordings
+* generates standard output files (i.e., .wav and .txt files) 
 
 ---
 
-### Why use it
-
-The FBI or local police regularly deploys IMSI-Catchers hidden in vehicles at protests to obtain a record of everyone who attended with a cell phone (leave your phones at home by all means if you really have to attend). IMSI-Catchers also allow adversaries to intercept your conversations, text messages, and data. Police can use them to determine your location or to find out who is in a given geographic area at what time. Identity thieves can use freely [available tools](http://www.nsaplayset.org/) and even [build their own rogue GSM BTS](https://evilsocket.net/2016/03/31/how-to-build-your-own-rogue-gsm-bts-for-fun-and-profit/) to monitor and manipulate communications from a parked car in your residential neighborhood - notably for stealing passwords or credit card data from people nearby who make purchases on their phones. The reason IMSI-Catchers are so commonly used is that it is very easy to get away with using them since they leave no traces. Our app aims to make it possible to detect the IMSI-Catchers so that using them becomes a risky proposition. It also aims to make users safer by alerting on possible interception and tracking. Fight for your privacy!
-
----
-
-### Warnings
-
-[![Warning](https://spideroak.com/share/IFEU2U2JINCA/GitHub/home/SecUpwN/SpiderOak/DOCUMENTATION/Warning.png)](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Development-Status)
-
-Please read our [Disclaimer](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/blob/master/DISCLAIMER)! This app does **not**:
-
-* Provide secure phone calls
-* Provide secure data transmission
-* Provide app permission control
-* Provide secure application sand-boxing
-* Provide [ROOT](http://www.xda-developers.com/root) and remove bloatware
-* Provide secure SMS
-* Provide firewalls
-* Provide full device encryption
-* Prevent already installed rogue apps from full access and spying
-
-Solutions for the above may be found in our [Recommendations](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Recommendations).
+### WIKI
+**For instructions of how to install/compile/use the project please see [WIKI](https://github.com/TadasBaltrusaitis/OpenFace/wiki)**
 
 ---
 
-### Bug Tracker
+### Developing and Contributing
 
-Please follow our [Bug Submission Guide](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/blob/development/CONTRIBUTING.md#debugging).
+We welcome and appreciate contributions from the community. There are many ways to become involved with MAGiC: including filing issues, writing and improving documentation, and contributing to the code. Please keep the following in mind before sending pull request:
 
----
-
-### Support
-
-Although our app is fully Open Source, developing it is a lot of work and done by privacy enthusiasts during their free time. If you're a developer yourself, we welcome and credit your [pull requests](https://help.github.com/articles/using-pull-requests/)! To keep developers in a great mood and support development, please consider making a [donation](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki/Donations). It will be split into pieces and directly sent to developers who solved the backed Issue.
+* make sure your branch is rebased on the master branch of this repository
+* ensure that code is stable enough and does compile.
+* explain clearly what the purpose of the patch is, and how you achieved it.
 
 ---
 
 ### License
 
 [![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/blob/master/LICENSE)
-Please [contribute](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/blob/development/.github/CONTRIBUTING.md) to this repository instead of rebranding our app. Thank you!
+MAGiC is licensed under the [GNU General Public License (GPL)]: LICENSE.txt
+You have to respect [OpenFace]:https://github.com/TadasBaltrusaitis/OpenFace, [Sphinx4]:https://github.com/cmusphinx/sphinx4, boost, TBB, dlib, and OpenCV licenses.
+Thank you!
