@@ -1,0 +1,7 @@
+language: csharp
+install:
+  - nuget restore ./MAGiC.sln
+
+script:
+  - xbuild ./MAGiC.sln /p:Configuration=Release /p:TargetFrameworkVersion=v4.5 /toolsversion:12.0
+
