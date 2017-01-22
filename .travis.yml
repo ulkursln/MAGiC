@@ -1,6 +1,0 @@
-﻿language: csharp
-solution: MAGiC.sln
-before_install:
-  - sudo apt-get install nunit-console
-before_script:
-  - nuget restore MAGiC.sln
