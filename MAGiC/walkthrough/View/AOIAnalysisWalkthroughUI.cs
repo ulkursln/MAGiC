@@ -3132,7 +3132,7 @@ namespace MAGiC
 
             // If the value looks like a URL, navigate to it.
             // Otherwise, display it in a message box.
-            if (null != target && target.StartsWith("www"))
+            if (null != target && target.StartsWith("https:"))
             {
                 System.Diagnostics.Process.Start(target);
             }
