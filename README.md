@@ -1,7 +1,7 @@
 
 ## <img src="https://raw.github.com/ulkursln/MAGiC/master/MAGiC/images/icon_shrinked.png" width="52" height="52"/> MAGiC: A Multimodal Framework for Analysing Gaze in Communication 
 
-**MAGiC** is an an open source software application, for integrating and analyzing multimodal channels in face-to-face social communication. Specifically, MAGiC integrates gaze data, audio data for speech segmentation and video data for face tracking. Find out more in our [Wiki on GitHub](https://github.com/CellularPrivacy/Android-IMSI-Catcher-Detector/wiki).
+**MAGiC** is an an open source software application, for integrating and analyzing multimodal channels in face-to-face social communication. Specifically, MAGiC integrates gaze data, audio data for speech segmentation and video data for face tracking. Find out more in our [Wiki on GitHub](https://github.com/ulkursln/MAGiC/wiki).
 
 ---
 <p align="center">
@@ -23,7 +23,7 @@ Speech and gaze are closely connected modalities in social interaction. MAGiC is
 
 ### WIKI
 
-For instructions of how to install/compile/use the project please see [WIKI](https://github.com/TadasBaltrusaitis/OpenFace/wiki)
+For instructions of how to install/compile/use the project please see [WIKI](https://github.com/ulkursln/MAGiC/wiki)
 
 ---
 
