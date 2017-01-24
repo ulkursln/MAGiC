@@ -583,7 +583,7 @@ namespace MAGiC
                         start.FileName = "java.exe";
                     }
 
-                    start.Arguments = "-cp " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\speech_analysis\\Sphinx4Files\\sphinx4-samples-1.0-SNAPSHOT-jar-with-dependencies.jar edu.cmu.sphinx.tools.endpoint.Segmenter -i " + fileName + " -o " + controls.txt_outputFolder_resegment.Text + "\\ -comb " + path_resegmented;
+                    start.Arguments = "-cp " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\speech_analysis\\Sphinx4Files\\sphinx4-core-all-1.0.jar edu.cmu.sphinx.tools.endpoint.Segmenter -i " + fileName + " -o " + controls.txt_outputFolder_resegment.Text + "\\ -comb " + path_resegmented;
 
                     start.UseShellExecute = false;
                     start.RedirectStandardInput = true;
@@ -719,7 +719,7 @@ namespace MAGiC
                 segment_num = words_base[0];
                 if (Convert.ToInt32(segment_num) == (Convert.ToInt32(Constants.starting_segment_num_base) + 1)) //entered starting segment num represents just before the experiment, i.e., bip like sound, so we start from the next segment to exclude bip like sound
                 {
-                    seg_interval_start_base = Convert.ToInt32(words_base[2]);
+                    seg_interval_start_base = Convert.ToInt32(words_base[1]);
                     break;
                 }
 
@@ -732,7 +732,7 @@ namespace MAGiC
                 segment_num = words_ref[0];
                 if (Convert.ToInt32(segment_num) == (Convert.ToInt32(Constants.starting_segment_num_ref) + 1))
                 {
-                    seg_interval_start_ref = Convert.ToInt32(words_ref[2]);
+                    seg_interval_start_ref = Convert.ToInt32(words_ref[1]);
                     break;
                 }
 
@@ -754,8 +754,8 @@ namespace MAGiC
                     segment_num = words_base[0];
                     if (Convert.ToInt32(segment_num) == (Convert.ToInt32(Constants.ending_segment_num_base) + 1))
                         break;
-                    seg_interval_start_base = Convert.ToInt32(words_base[2]);
-                    seg_interval_end_base = Convert.ToInt32(words_base[3]);
+                    seg_interval_start_base = Convert.ToInt32(words_base[1]);
+                    seg_interval_end_base = Convert.ToInt32(words_base[2]);
                     if (!intervals.Contains(seg_interval_start_base))
                     {
                         intervals.Add(seg_interval_start_base);
@@ -786,8 +786,8 @@ namespace MAGiC
                 segment_num = words_ref[0];
                 if (Convert.ToInt32(segment_num) == (Convert.ToInt32(Constants.ending_segment_num_ref) + 1))
                     break;
-                seg_interval_start_ref = Convert.ToInt32(words_ref[2]) + starting_time_difference_between_participants_in_pair;
-                seg_interval_end_ref = Convert.ToInt32(words_ref[3]) + starting_time_difference_between_participants_in_pair;
+                seg_interval_start_ref = Convert.ToInt32(words_ref[1]) + starting_time_difference_between_participants_in_pair;
+                seg_interval_end_ref = Convert.ToInt32(words_ref[2]) + starting_time_difference_between_participants_in_pair;
                 if (!intervals.Contains(seg_interval_start_ref))
                 {
 

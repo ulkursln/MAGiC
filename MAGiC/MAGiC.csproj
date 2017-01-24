@@ -12,6 +12,25 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\doktora\TIK4\BehavioralResearchMethods\setup\64\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>https://github.com/ulkursln/MAGiC</SupportUrl>
+    <ProductName>MAGiC</ProductName>
+    <PublisherName>METU</PublisherName>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,13 +43,76 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C3177787D6567B8C285ECD76DB604DDE5F575BF6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MAGiC_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '32|AnyCPU'">
+    <OutputPath>bin\32\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '32|x64'">
+    <OutputPath>bin\x64\32\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '32|x86'">
+    <OutputPath>bin\x86\32\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -102,6 +184,9 @@
     <Compile Include="walkthrough\Info.cs" />
     <Compile Include="walkthrough\View\SpeechAnalysisWalkthroughUI.cs" />
     <Compile Include="walkthrough\View\SummaryWalkthroughUI.cs" />
+    <Content Include="speech_analysis\Sphinx4Files\sphinx4-core-all-1.0.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -112,213 +197,214 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_10_dynamic.dat">
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_10_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_10_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_10_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_12_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_12_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_12_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_12_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_14_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_14_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_14_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_14_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_15_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_15_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_15_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_15_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_17_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_17_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_17_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_17_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_1_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_1_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_1_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_1_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_20_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_20_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_20_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_20_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_23_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_23_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_23_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_23_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_25_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_25_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_25_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_25_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_26_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_26_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_26_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_26_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_28_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_28_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_28_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_28_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_2_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_2_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_2_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_2_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_45_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_45_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_45_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_45_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_4_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_4_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_4_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_4_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_5_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_5_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_5_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_5_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_6_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_6_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_6_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_6_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_7_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_7_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_7_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_7_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_9_dynamic.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_9_dynamic.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_9_static.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svm_combined\AU_9_static.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_10_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_10_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_12_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_12_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_14_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_14_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_15_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_15_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_15_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_15_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_17_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_17_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_17_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_17_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_1_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_1_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_1_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_1_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_20_dynamic_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_20_dynamic_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_20_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_20_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_23_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_23_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_23_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_23_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_25_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_25_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_25_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_25_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_26_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_26_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_26_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_26_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_2_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_2_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_2_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_2_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_45_dynamic_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_45_dynamic_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_45_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_45_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_4_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_4_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_5_dynamic_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_5_dynamic_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_5_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_5_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_6_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_6_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_7_static_intensity_comb.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_7_static_intensity_comb.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_9_dynamic_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_9_dynamic_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_9_static_intensity.dat">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\AU_predictors\svr_combined\AU_9_static_intensity.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\dlib.lib">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\dlib.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\FaceAnalyser.lib">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\FaceAnalyser.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="aoi_analysis\OpenFaceFiles\LandmarkDetector.lib">
+    </Content>
+    <Content Include="aoi_analysis\OpenFaceFiles\LandmarkDetector.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="aoi_analysis\OpenFaceFiles\Recording.iobj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="aoi_analysis\OpenFaceFiles\Recording.ipdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="MAGiC_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -622,9 +708,6 @@
     <Content Include="speech_analysis\Sphinx4Files\Interop.WMPLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="speech_analysis\Sphinx4Files\sphinx4-samples-1.0-SNAPSHOT-jar-with-dependencies.jar">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">
@@ -653,6 +736,18 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

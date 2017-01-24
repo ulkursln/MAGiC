@@ -112,7 +112,7 @@ namespace MAGiC
             {
                 start.FileName = "java.exe";
             }
-            start.Arguments = "-cp " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\speech_analysis\\Sphinx4Files\\sphinx4-samples-1.0-SNAPSHOT-jar-with-dependencies.jar edu.cmu.sphinx.tools.endpoint.Segmenter -i " + fileName + " -o " + controls.txt_outputFolder_segment.Text + "\\ -a " + controls.txt_outputFolder_segment.Text + "\\";
+            start.Arguments = "-cp " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\speech_analysis\\Sphinx4Files\\sphinx4-core-all-1.0.jar edu.cmu.sphinx.tools.endpoint.Segmenter -i " + fileName + " -o " + controls.txt_outputFolder_segment.Text + "\\ -a " + controls.txt_outputFolder_segment.Text + "\\";
             start.UseShellExecute = false;
             start.RedirectStandardInput = true;
             start.RedirectStandardOutput = true;
