@@ -49,8 +49,11 @@ namespace MAGiC
             this.SetStyle(cs, true);
             object[] objArgs = new object[] { cs, true };
             MethodInfo objMethodInfo = typeof(Control).GetMethod("SetStyle", BindingFlags.NonPublic | BindingFlags.Instance);
+      
             objMethodInfo.Invoke(this.Panel1, objArgs);
             objMethodInfo.Invoke(this.Panel2, objArgs);
+
+
         }
 
         #region Properties
@@ -403,7 +406,7 @@ namespace MAGiC
             }
 
             // Paint the background with the underlying background color
-            using (SolidBrush brush = new SolidBrush(backcolor))
+            using (SolidBrush brush = new SolidBrush(Color.DarkGray)/*SolidBrush brush = new SolidBrush(backcolor)*/)
             {
                 g.FillRectangle(brush, this.SplitterRectangle);
             }

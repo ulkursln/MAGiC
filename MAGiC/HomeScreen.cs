@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MAGiC.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,7 @@ namespace MAGiC
         SpeechAnalysisTab speechAnalysisTab;
         AOIAnalysisTab aoiAnalysisTab;
         SummaryTab summaryTab;
-        TabPage tp_walkthrough = new TabPage("Walkthrough");
+        TabPage tp_walkthrough = new TabPage("Walkthrough Tree");
         TabPage tp_walkthrough_nodes = new TabPage("Walkthrough");
         TabPage tp_speechAnalysis = new TabPage("Speech Anaylsis");
         TabPage tp_aoiAnalysis = new TabPage("AOI Analysis");
@@ -36,37 +37,62 @@ namespace MAGiC
         WalkthroughTree walkthroughTree;
         //---
 
-        Label lbl_steps = new Label
+        //Label lbl_steps = new Label
+        //{
+        //    //Text = Constants.LEFTPANE_HOME,
+        //    Margin = Padding.Empty,
+        //    AutoSize = true,
+        //    //Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
+        //    ForeColor = Color.Blue,
+        //    Image= global::MAGiC.Properties.Resources.homePage2,
+
+
+        //};
+
+
+        OutlookBarButton outlookBarButtonWalkthrough = new OutlookBarButton();
+        OutlookBarButton outlookBarButtonSpeechAnalysis = new OutlookBarButton();
+        OutlookBarButton outlookBarButtonAOIAnalysis = new OutlookBarButton();
+        OutlookBarButton outlookBarButtonSummary = new OutlookBarButton();
+
+
+        OutlookBar outlookBar1 = new OutlookBar();
+
+
+        Button lbl_steps = new Button
         {
-            Text = Constants.LEFTPANE_HOME,
             Margin = Padding.Empty,
             AutoSize = true,
-            Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
-            ForeColor = Color.Blue
+            //Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
+            ForeColor = Color.Blue,
+            Image = global::MAGiC.Properties.Resources.homePage2Resized,
+            Size = new Size(40, 40)
+
         };
+
         Label lbl_speechAnalysis = new Label
         {
             Text = Constants.LEFTPANE_SPEECHANALYSIS,
             AutoSize = true,
-            Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
+            Font = new Font("Arial", 15, FontStyle.Bold),
             ForeColor = Color.Blue
         };
         Label lbl_aoiAnalysis = new Label
         {
             Text = Constants.LEFTPANE_AOIANALYSIS,
             AutoSize = true,
-            Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
+            Font = new Font("Arial", 15, FontStyle.Bold),
             ForeColor = Color.Blue
         };
         Label lbl_summary = new Label
         {
             Text = Constants.LEFTPANE_SUMMARY,
             AutoSize = true,
-            Font = new Font("Arial", 15, FontStyle.Bold | FontStyle.Underline),
+            Font = new Font("Arial", 15, FontStyle.Bold),
             ForeColor = Color.Blue
         };
 
-        FlowLayoutPanel options = new FlowLayoutPanel() { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoScroll = true };
+        // FlowLayoutPanel options = new FlowLayoutPanel() { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoScroll = true };
         ColorDialog dialogColor = new ColorDialog();
 
         public HomeScreen()
@@ -77,8 +103,6 @@ namespace MAGiC
             aoiAnalysisTab = new AOIAnalysisTab(this);
             summaryTab = new SummaryTab(this);
 
-            walkthroughTree = new WalkthroughTree();
-
             speechAnalysisWalkthrougUI = new SpeechAnalysisWalkthroughUI(this);
             speechAnalysisWalkthrougUI.initializeController();
             aoiAnalysisWalkthroughUI = new AOIAnalysisWalkthroughUI(this);
@@ -87,8 +111,9 @@ namespace MAGiC
             summaryWalkthroughUI.initializeController();
 
             Text = "MAGiC v1.0";
-            this.Icon = global::MAGiC.Properties.Resources.icon;
+            this.Icon = global::MAGiC.Properties.Resources.top;
             ClientSize = new System.Drawing.Size(1000, 700);
+
             //splitPane.Size = new System.Drawing.Size(1000, 1);
             //splitPane.SplitterDistance = 400;
             //splitPane.FixedPanel = FixedPanel.Panel1;
@@ -96,6 +121,7 @@ namespace MAGiC
             ((System.ComponentModel.ISupportInitialize)(this.splitter)).BeginInit();
             this.splitter.SuspendLayout();
             SuspendLayout();
+            createOutlookBarComponentItems();
 
             this.splitter.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,44 +130,51 @@ namespace MAGiC
             this.splitter.Size = new System.Drawing.Size(384, 237);
             //this.splitter.SplitterButtonBitmap = ((System.Drawing.Bitmap)(resources.GetObject("splitter.SplitterButtonBitmap")));
             this.splitter.SplitterButtonStyle = ButtonStyle.PushButton;
-            this.splitter.SplitterDistance = 128;
+            this.splitter.SplitterDistance = 60;
             this.splitter.SplitterWidth = 22;
             this.splitter.TabIndex = 2;
 
-            options.Controls.Add(lbl_steps);
-            options.Controls.Add(lbl_speechAnalysis);
-            options.Controls.Add(lbl_aoiAnalysis);
-            options.Controls.Add(lbl_summary);
-            this.Controls.Add(this.splitter);
-
-
-            //---
-            //splitPane.Panel1.Controls.Add(options);
-            //splitPane.Panel2.Controls.Add(tc);
-            splitter.Panel1.Controls.Add(options);
+            splitter.Panel1.Controls.Add(outlookBar1);
             splitter.Panel2.Controls.Add(tc);
             splitter.SplitterButtonStyle = ButtonStyle.ScrollBar;
             splitter.SplitterButtonPosition = ButtonPosition.Center;
 
+            this.Controls.Add(this.splitter);
+
+
+            tc.ItemSize = new Size(250, 50);
+            tc.Appearance = TabAppearance.Buttons;
+            ImageList imageList1 = new ImageList();
+            imageList1.ImageSize = new Size(35, 35);
+            imageList1.Images.Add("walkthroughImage", global::MAGiC.Properties.Resources.walkthroughResized);
+            imageList1.Images.Add("speechAnalysisImage", global::MAGiC.Properties.Resources.sound);
+            imageList1.Images.Add("AOIAnalysisImage", global::MAGiC.Properties.Resources.face);
+            imageList1.Images.Add("summaryImage", global::MAGiC.Properties.Resources.notebook_1);
+            tc.ImageList = imageList1;
+
 
             tc.TabPages.Add(tp_walkthrough);
-            tc.TabPages.Add(tp_speechAnalysis);
-            tc.TabPages.Add(tp_aoiAnalysis);
-            tc.TabPages.Add(tp_summary);
 
-
-
+            tc.Font = new Font("Arial", 12, FontStyle.Bold);
 
             tp_walkthrough.Controls.Add(walkthroughHomeScreen());
+            tp_walkthrough.ImageKey = "walkthroughImage";
+
 
             tp_speechAnalysis.Controls.Add(speechAnalysisTab);
-            tp_aoiAnalysis.Controls.Add(aoiAnalysisTab);
-            tp_summary.Controls.Add(summaryTab.getLayout());
+            tp_speechAnalysis.ImageKey = "speechAnalysisImage";
 
+            tp_aoiAnalysis.Controls.Add(aoiAnalysisTab);
+            tp_aoiAnalysis.ImageKey = "AOIAnalysisImage";
+
+            tp_summary.Controls.Add(summaryTab.getLayout());
+            tp_summary.ImageKey = "summaryImage";
+
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
 
             //---
 
-            Accordion[] accs = new[] { speechAnalysisTab.acc, aoiAnalysisTab.acc, };
+            Accordion[] accs = new[] { speechAnalysisTab.acc, aoiAnalysisTab.acc };
             foreach (var a in accs)
             {
                 a.OpenOneOnly = true;
@@ -149,98 +182,173 @@ namespace MAGiC
             }
 
 
-            //---
-            lbl_speechAnalysis.Click += delegate
-            {
-                tc.SelectedTab = tp_speechAnalysis;
-
-            };
-
-            //---
-            lbl_aoiAnalysis.Click += delegate
-            {
-                tc.SelectedTab = tp_aoiAnalysis;
-
-            };
-
-            //---
-            lbl_summary.Click += delegate
-            {
-                tc.SelectedTab = tp_summary;
-
-            };
-
-            lbl_steps.Click += delegate
-            {
-                tc.SelectedTab = tp_walkthrough;
-
-            };
-
+            this.WindowState = FormWindowState.Maximized;
+    
 
             //---
             //Controls.Add(splitPane);
             tc.SelectedTab = tp_walkthrough;
 
             ((System.ComponentModel.ISupportInitialize)(this.splitter)).EndInit();
+
             this.splitter.ResumeLayout(false);
-            ResumeLayout(true);
+            //this.outlookBar1.ResumeLayout();
+            // ResumeLayout(true);
+
+            this.ResumeLayout(true);
+            this.PerformLayout();
 
         }
 
-        //public Control walkthroughScreen()
-        //{
-        //    TableLayoutPanel pnl_walkthrough = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
-        //    pnl_walkthrough.Margin = new Padding(0);
-        //    pnl_walkthrough.ColumnCount = 1;
-        //    pnl_walkthrough.RowCount = 13;
+        private void createOutlookBarComponentItems()
+        {
+            this.outlookBar1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.outlookBar1.ButtonHeight = 50;
 
-        //    pnl_walkthrough.Controls.Add(new Label { Text = " ", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
-        //    pnl_walkthrough.Controls.Add(new Label { Text = "Speech Analysis", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 1);
-        //    pnl_walkthrough.Controls.Add(walkthroughSpeechAnalysis, 0, 2);
-        //    pnl_walkthrough.SetRowSpan(walkthroughSpeechAnalysis, 5);
+            outlookBarButtonWalkthrough.Enabled = true;
+            outlookBarButtonWalkthrough.Image = (global::MAGiC.Properties.Resources.walkthroughResized);
+            outlookBarButtonWalkthrough.Tag = null;
+            outlookBarButtonWalkthrough.Text = "Walkthrough Tree";
 
-        //    pnl_walkthrough.Controls.Add(new Label { Text = " ", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 7);
-        //    pnl_walkthrough.Controls.Add(new Label { Text = "AOI Analysis", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) }, 0,8);
-        //    pnl_walkthrough.Controls.Add(walkthroughAOIAnalysis, 0, 9);
-        //    pnl_walkthrough.SetRowSpan(walkthroughAOIAnalysis, 5);
+            outlookBarButtonSpeechAnalysis.Enabled = true;
+            outlookBarButtonSpeechAnalysis.Image = (global::MAGiC.Properties.Resources.sound);
+            outlookBarButtonSpeechAnalysis.Tag = null;
+            outlookBarButtonSpeechAnalysis.Text = "Speech Analysis";
 
-        //    return pnl_walkthrough;
-        //}
+            outlookBarButtonAOIAnalysis.Enabled = true;
+            outlookBarButtonAOIAnalysis.Image = (global::MAGiC.Properties.Resources.face);
+            outlookBarButtonAOIAnalysis.Tag = null;
+            outlookBarButtonAOIAnalysis.Text = "AOI Analysis";
+
+            outlookBarButtonSummary.Enabled = true;
+            outlookBarButtonSummary.Image = (global::MAGiC.Properties.Resources.notebook_1);
+            outlookBarButtonSummary.Tag = null;
+            outlookBarButtonSummary.Text = "Summary";
+
+
+
+            this.outlookBar1.Buttons.Add(outlookBarButtonWalkthrough);
+            this.outlookBar1.Buttons.Add(outlookBarButtonSpeechAnalysis);
+            this.outlookBar1.Buttons.Add(outlookBarButtonAOIAnalysis);
+            this.outlookBar1.Buttons.Add(outlookBarButtonSummary);
+
+
+            this.outlookBar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.outlookBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.outlookBar1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
+            this.outlookBar1.GradientButtonHoverDark = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(192)))), ((int)(((byte)(91)))));
+            this.outlookBar1.GradientButtonHoverLight = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
+            this.outlookBar1.GradientButtonNormalDark = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(193)))), ((int)(((byte)(140)))));
+            this.outlookBar1.GradientButtonNormalLight = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(240)))), ((int)(((byte)(207)))));
+            this.outlookBar1.GradientButtonSelectedDark = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(150)))), ((int)(((byte)(21)))));
+            this.outlookBar1.GradientButtonSelectedLight = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(230)))), ((int)(((byte)(148)))));
+            this.outlookBar1.Location = new System.Drawing.Point(3, 64);
+            this.outlookBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outlookBar1.Name = "outlookBar1";
+            this.outlookBar1.SelectedButton = null;
+            this.outlookBar1.Size = new System.Drawing.Size(217, 250);
+            this.outlookBar1.TabIndex = 0;
+            this.outlookBar1.Click += new OutlookBar.ButtonClickEventHandler(this.outlookBar1_Click);
+        }
+
+        private void outlookBar1_Click(object sender, OutlookBar.ButtonClickEventArgs e)
+        {
+            int idx = outlookBar1.Buttons.IndexOf(e.SelectedButton);
+            switch (idx)
+            {
+                case 0: // Walkthrough
+                    if (!tc.TabPages.Contains(tp_walkthrough))
+                    {
+
+                        tc.TabPages.Insert(1, tp_walkthrough);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_walkthrough;
+                        tp_walkthrough.ImageKey = "walkthroughImage";
+                    }
+                    break;
+                case 1: // Speech Analysis
+                    if (!tc.TabPages.Contains(tp_speechAnalysis))
+                    {
+
+                        tc.TabPages.Insert(1, tp_speechAnalysis);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_speechAnalysis;
+                        tp_speechAnalysis.ImageKey = "speechAnalysisImage";
+                    }
+                    break;
+                case 2: // AOI Analysis
+                    if (!tc.TabPages.Contains(tp_aoiAnalysis))
+                    {
+                        tc.TabPages.Insert(1, tp_aoiAnalysis);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_aoiAnalysis;
+                        tp_aoiAnalysis.ImageKey = "AOIAnalysisImage";
+
+                    }
+                    break;
+                case 3: // Summary
+                    if (!tc.TabPages.Contains(tp_summary))
+                    {
+                        tc.TabPages.Insert(1, tp_summary);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_summary;
+                        tp_summary.ImageKey = "summaryImage";
+                    }
+                    break;
+
+            }
+
+        }
 
         public Control walkthroughHomeScreen()
         {
-            TableLayoutPanel pnl_main_faceTrackingWithDefaultDetector = new TableLayoutPanel { Dock = DockStyle.Fill, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink };
-            pnl_main_faceTrackingWithDefaultDetector.Margin = new Padding(0);
-            pnl_main_faceTrackingWithDefaultDetector.ColumnCount = 1;
-            pnl_main_faceTrackingWithDefaultDetector.RowCount = 1;
+            ImageList imageListTreeView = new ImageList();
+            imageListTreeView.ImageSize = new Size(25, 25);
+            imageListTreeView.Images.Add("clickableItem", global::MAGiC.Properties.Resources.mouseHand);
+
+            walkthroughTree = new WalkthroughTree();
+            CustomTree treeView = new CustomTree();
+
+            treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            treeView.BackColor = System.Drawing.SystemColors.Info;
+             treeView.FullRowSelect = true;
+             treeView.ImageIndex = 0;
+            treeView.ImageList = imageListTreeView;
+            treeView.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            treeView.Location = new System.Drawing.Point(0, 0);
+            treeView.Name = "walkthrough";
+            treeView.SelectedImageIndex = 0;
+            treeView.Size = new System.Drawing.Size(234, 216);
+            treeView.TabIndex = 0;
+
+            walkthroughTree.ensureDefaultImageIndex(treeView);
+            treeView.DrawMode = TreeViewDrawMode.OwnerDrawAll;
+            walkthroughTree.loadTree(treeView);
+            treeView.Nodes[0].ExpandAll();
 
 
-            TreeView tv = walkthroughTree.treeView;
+            treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(tv_NodeMouseClick);
 
+            return treeView;
 
-            tv.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(tv_NodeMouseClick);
-
-            pnl_main_faceTrackingWithDefaultDetector.Controls.Add(tv);
-            return tv;
-            //tp_walkthrough.Controls.Add(pnl_main_faceTrackingWithDefaultDetector);
-
-
-            //tc.TabPages.Insert(1, tp_walkthrough);
-            //tc.TabPages.RemoveAt(0);
-            //tc.SelectedTab = tp_walkthrough;
         }
+
+
 
         private void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            tp_walkthrough_nodes = new TabPage("Walkthrough");
+           
 
             bool changeWalkthrouhPage = createWalkthrougPage(e, walkthroughTree);
 
             if (changeWalkthrouhPage)
             {
-                tc.TabPages.Insert(1, tp_walkthrough_nodes);
                 tc.TabPages.RemoveAt(0);
+                tc.TabPages.Insert(0, tp_walkthrough_nodes);
                 tc.SelectedTab = tp_walkthrough_nodes;
+                tp_walkthrough_nodes.ImageKey = "walkthroughImage";
             }
         }
 
@@ -254,7 +362,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_extractAndFormatAudio = speechAnalysisWalkthrougUI.getExtractAndFormatAudioWalkthroughLayout();
                 /*End of Extract and Format Audio*/
-
+                tp_walkthrough_nodes = new TabPage( Constants.WalkthroughTitleExtractFormatAudio);
                 tp_walkthrough_nodes.Controls.Add(pnl_extractAndFormatAudio);
                 changeWalkthrouhPage = true;
 
@@ -266,7 +374,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_SegmentAudio = speechAnalysisWalkthrougUI.getSegmentAudioWalkthroughLayout();
                 /*End of Segment Audio*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleSegmentAudio);
                 tp_walkthrough_nodes.Controls.Add(pnl_SegmentAudio);
                 changeWalkthrouhPage = true;
 
@@ -279,7 +387,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_specifyTimeInterval = speechAnalysisWalkthrougUI.getSpecifyTimeIntervalWalkthroughLayout();
                 /*End of Time Interval Specification (also, Synchronization for Multiple Recordings) Tab*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleTimeIntervalEstimation);
                 tp_walkthrough_nodes.Controls.Add(pnl_specifyTimeInterval);
                 changeWalkthrouhPage = true;
 
@@ -291,7 +399,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_defineSpeechAct = speechAnalysisWalkthrougUI.getDefineSpeechActWalkthroughLayout();
                 /*DefineSpeechActTab*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleDefineSpeechActs);
                 tp_walkthrough_nodes.Controls.Add(pnl_defineSpeechAct);
                 changeWalkthrouhPage = true;
             }
@@ -302,7 +410,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_annotation = speechAnalysisWalkthrougUI.getAnnotationWalkthroughLayout();
                 /*Annotation Tab*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleAnnotation);
                 tp_walkthrough_nodes.Controls.Add(pnl_annotation);
                 changeWalkthrouhPage = true;
             }
@@ -314,7 +422,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_faceTrackingWithDefaultDetector = aoiAnalysisWalkthroughUI.getFaceTrackingWithDefaultDetectorWalkthroughLayout();
                 /*End of Face Tracking With Default Detector*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleFaceTrackingDefaultDetector);
                 tp_walkthrough_nodes.Controls.Add(pnl_faceTrackingWithDefaultDetector);
                 changeWalkthrouhPage = true;
 
@@ -326,7 +434,7 @@ namespace MAGiC
                 /**************************************************************************/
                 TableLayoutPanel pnl_faceTrackingWithTrainedDetector = aoiAnalysisWalkthroughUI.getFaceTrackingWithTrainedDetectorWalkthroughLayout();
                 /*End of Face Tracking With Default Detector*/
-
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleFaceTrackingTrainedDetector);
                 tp_walkthrough_nodes.Controls.Add(pnl_faceTrackingWithTrainedDetector);
                 changeWalkthrouhPage = true;
 
@@ -335,6 +443,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_preProcessGazeData = aoiAnalysisWalkthroughUI.getPreProcessGazeDataWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitlePreProcessGazeData);
                 tp_walkthrough_nodes.Controls.Add(pnl_preProcessGazeData);
                 changeWalkthrouhPage = true;
 
@@ -343,6 +452,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_detectAOI = aoiAnalysisWalkthroughUI.getDetectAOIWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleFaceasAOI);
                 tp_walkthrough_nodes.Controls.Add(pnl_detectAOI);
                 changeWalkthrouhPage = true;
 
@@ -351,6 +461,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_visualizeTracking = aoiAnalysisWalkthroughUI.getVisualizeTrackingWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleVisualizeTracking);
                 tp_walkthrough_nodes.Controls.Add(pnl_visualizeTracking);
                 changeWalkthrouhPage = true;
 
@@ -359,6 +470,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_findDetectionRatio = aoiAnalysisWalkthroughUI.getFindDetectionRatioWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleFindAOIsDetectionRatio);
                 tp_walkthrough_nodes.Controls.Add(pnl_findDetectionRatio);
                 changeWalkthrouhPage = true;
 
@@ -367,6 +479,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_labelAOIManually = aoiAnalysisWalkthroughUI.getLabelAOIManuallyWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleLabelAOIsManually);
                 tp_walkthrough_nodes.Controls.Add(pnl_labelAOIManually);
                 changeWalkthrouhPage = true;
 
@@ -376,6 +489,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_reanalyseAOI = aoiAnalysisWalkthroughUI.getReanalyseAOIWalkthroughLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleReanalyseAOIs);
                 tp_walkthrough_nodes.Controls.Add(pnl_reanalyseAOI);
                 changeWalkthrouhPage = true;
 
@@ -385,6 +499,7 @@ namespace MAGiC
             {
 
                 TableLayoutPanel pnl_summary = summaryWalkthroughUI.getLayout();
+                tp_walkthrough_nodes = new TabPage(Constants.WalkthroughTitleSummary);
                 tp_walkthrough_nodes.Controls.Add(pnl_summary);
                 changeWalkthrouhPage = true;
 
@@ -419,6 +534,11 @@ namespace MAGiC
 
                 homeScreen = _homeScreen;
                 List<CheckBox> checkboxList = new List<CheckBox>();
+
+                TableLayoutPanel pnl_main_speechAnalysis = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Color.WhiteSmoke, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink };
+                pnl_main_speechAnalysis.Margin = new Padding(0);
+                pnl_main_speechAnalysis.ColumnCount = 1;
+                pnl_main_speechAnalysis.RowCount = 1;
 
                 Accordion accParent = acc;
                 acc.Insets = new Padding(10);
@@ -458,7 +578,9 @@ namespace MAGiC
                 checkboxList.Add(accParent.Add(accNested, "Speech Annotation", "ToolTip 4"));
                 /*Speech-Act Annotation Tab*/
 
-                Controls.Add(acc);
+                pnl_main_speechAnalysis.Controls.Add(acc);
+                Controls.Add(pnl_main_speechAnalysis);
+                // Controls.Add(acc);
 
             }
 
@@ -509,6 +631,11 @@ namespace MAGiC
 
                 homeScreen = _homeScreen;
                 List<CheckBox> checkboxListFaceTracking = new List<CheckBox>();
+                TableLayoutPanel pnl_main_AOIAnalysis = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Color.WhiteSmoke, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink };
+                pnl_main_AOIAnalysis.Margin = new Padding(0);
+                pnl_main_AOIAnalysis.ColumnCount = 1;
+                pnl_main_AOIAnalysis.RowCount = 1;
+
                 Accordion accParentfaceTracking = acc;
 
                 acc.Insets = new Padding(10);
@@ -552,8 +679,8 @@ namespace MAGiC
 
                 /*End of Review Outcomes*/
 
-
-                Controls.Add(acc);
+                pnl_main_AOIAnalysis.Controls.Add(acc);
+                Controls.Add(pnl_main_AOIAnalysis);
 
             }
 
@@ -681,6 +808,7 @@ namespace MAGiC
         //speech analysis
         public void navigateToExtractFormatAudio()
         {
+            arrangeApperanceOfRelatedTab(1);
             tc.SelectedTab = tp_speechAnalysis;
             speechAnalysisTab.selectExtactAndFormatAudioItem();
 
@@ -688,24 +816,28 @@ namespace MAGiC
 
         public void navigateToSegmentAudio()
         {
+            arrangeApperanceOfRelatedTab(1);
             tc.SelectedTab = tp_speechAnalysis;
             speechAnalysisTab.selectSegmentAudioItem();
         }
 
         public void navigateToSpecifyTimeInterval()
         {
+            arrangeApperanceOfRelatedTab(1);
             tc.SelectedTab = tp_speechAnalysis;
             speechAnalysisTab.selectSpecifyTimeIntervalItem();
         }
 
         public void navigateToDefineSpeechAct()
         {
+            arrangeApperanceOfRelatedTab(1);
             tc.SelectedTab = tp_speechAnalysis;
             speechAnalysisTab.selectDefineSpeechActItem();
         }
 
         public void navigateToAnnotation()
         {
+            arrangeApperanceOfRelatedTab(1);
             tc.SelectedTab = tp_speechAnalysis;
             speechAnalysisTab.selectAnnotationItem();
         }
@@ -713,54 +845,63 @@ namespace MAGiC
         //AOI analysis
         public void navigateToFaceTrackingWithDefaultDetector()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectFaceTrackingWithDefaultDetectorItem();
         }
         public void navigateToFaceTrackingWithTrainedDetector()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectFaceTrackingWithTrainedDetectorItem();
         }
         public void navigateToPreProcessGazeData()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectPreProcessGazeDataItem();
         }
         public void navigateToDetectAOI()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectDetectAOIItem();
         }
         public void navigateToVisualizeTrackingResults()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectVisualizeTrackingResultsItem();
         }
         public void navigateToFindDetectionRatio()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectFindDetectionRatioItem();
         }
         public void navigateToLabelAOIManually()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectLabelAOIManuallyItem();
         }
         public void navigateToReanalyseAOI()
         {
+            arrangeApperanceOfRelatedTab(2);
             tc.SelectedTab = tp_aoiAnalysis;
             aoiAnalysisTab.selectReanalyseAOIItem();
         }
 
         public void navigateToSummary()
         {
+            arrangeApperanceOfRelatedTab(3);
             tc.SelectedTab = tp_summary;
 
         }
 
         public void navigateToWalkthroughHome()
         {
-            tc.SelectedTab = tp_aoiAnalysis;
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
 
             tc.TabPages.Insert(1, tp_walkthrough);
             tc.TabPages.RemoveAt(0);
@@ -769,86 +910,163 @@ namespace MAGiC
 
         public void navigateToExtractFormatAudioWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_speech_extractFormatAudio, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleExtractFormatAudio;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToSegmentAudioWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_speech_segmentAudio, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleSegmentAudio;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToSpecifyTimeIntervalWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_speech_timeIntervalEstimation, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleTimeIntervalEstimation;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToDefineSpeechActWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_speech_speechAnnotation_defineSpeechActs, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleDefineSpeechActs;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToAnnotationWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_speech_speechAnnotation_annotation, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleAnnotation;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToFaceTrackingWithDefaultDetectorWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_faceTracking_defaultDetector, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleFaceTrackingDefaultDetector;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToFaceTrackingWithTrainedDetectorWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_faceTracking_trainedDetector, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleFaceTrackingTrainedDetector;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToPreProcessGazeDataWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_aoiAnaylse_preProcessGazeData, new MouseButtons(), 0, 0, 0);
+            tp_walkthrough_nodes.Text = Constants.WalkthroughTitlePreProcessGazeData;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToDetectAOIWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_aoiAnaylse_faceasAOI, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleFaceasAOI;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToVisualizeTrackingResultsWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_reviewOutcomes_visualizeTracking, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleVisualizeTracking;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToFindDetectionRatioWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_reviewOutcomes_findAOIsDetectionRatio, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleFindAOIsDetectionRatio;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToLabelAOIManuallyWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_reviewOutcomes_labelAOIsManually, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleLabelAOIsManually;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToReanalyseAOIWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_aoi_reviewOutcomes_reanalyseAOIs, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleReanalyseAOIs;
             tv_NodeMouseClick(new object(), e);
         }
 
         public void navigateToSummaryWalkthrough()
         {
+            outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
             TreeNodeMouseClickEventArgs e = new TreeNodeMouseClickEventArgs(walkthroughTree.node_analysis_summary, new MouseButtons(), 0, 0, 0);
+            //tp_walkthrough_nodes.Text = Constants.WalkthroughTitleSummary;
             tv_NodeMouseClick(new object(), e);
+        }
+
+        private void arrangeApperanceOfRelatedTab(int idx)
+        {
+
+            switch (idx)
+            {
+                case 0: // Walkthrough
+                    if (!tc.TabPages.Contains(tp_walkthrough))
+                    {
+                        outlookBar1.SelectedButton = outlookBarButtonWalkthrough;
+                        tc.TabPages.Insert(1, tp_walkthrough);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_walkthrough;
+                        tp_walkthrough.ImageKey = "walkthroughImage";
+                    }
+                    break;
+                case 1: // Speech Analysis
+                    if (!tc.TabPages.Contains(tp_speechAnalysis))
+                    {
+                        outlookBar1.SelectedButton = outlookBarButtonSpeechAnalysis;
+                        tc.TabPages.Insert(1, tp_speechAnalysis);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_speechAnalysis;
+                        tp_speechAnalysis.ImageKey = "speechAnalysisImage";
+                    }
+                    break;
+                case 2: // AOI Analysis
+                    if (!tc.TabPages.Contains(tp_aoiAnalysis))
+                    {
+                        outlookBar1.SelectedButton = outlookBarButtonAOIAnalysis;
+                        tc.TabPages.Insert(1, tp_aoiAnalysis);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_aoiAnalysis;
+                        tp_aoiAnalysis.ImageKey = "AOIAnalysisImage";
+                    }
+                    break;
+                case 3: // Summary
+                    if (!tc.TabPages.Contains(tp_summary))
+                    {
+                        outlookBar1.SelectedButton = outlookBarButtonSummary;
+                        tc.TabPages.Insert(1, tp_summary);
+                        tc.TabPages.RemoveAt(0);
+                        tc.SelectedTab = tp_summary;
+                        tp_summary.ImageKey = "summaryImage";
+                    }
+                    break;
+
+            }
         }
 
 

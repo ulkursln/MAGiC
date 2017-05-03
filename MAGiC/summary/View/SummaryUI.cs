@@ -19,17 +19,23 @@ namespace MAGiC
 
         /* Summary controls*/
         /**********************************************************************************************/
-        public ToolTip tt_output_file_summary = new ToolTip();
+        public ToolTip tt_output_folder_summary = new ToolTip();
         public ToolTip tt_speechAnnotation_file_summary = new ToolTip();
         
 
         public Button btn_gotoWalkthrough_summary = new Button { Text = "Go to Walkthrough", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
  
 
-        public Label lbl_output_file_summary = new Label { Text = "Output File:", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) };
-        public TextBox txt_outputFile_summary = new TextBox { AutoSize = true, Width = 600 };
-        public Button btn_createFileOutput_summary = new Button { Text = "Create", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public SaveFileDialog sfd_outputFile_summary_create = new SaveFileDialog();
+        //public Label lbl_output_file_summary = new Label { Text = "Output File:", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) };
+        //public TextBox txt_outputFile_summary = new TextBox { AutoSize = true, Width = 600 };
+        //public Button btn_createFileOutput_summary = new Button { Text = "Create", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        //public SaveFileDialog sfd_outputFile_summary_create = new SaveFileDialog();
+
+        public Label lbl_output_folder_summary = new Label { Text = "Output Folder:", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) };
+        public TextBox txt_output_folder_summary = new TextBox { AutoSize = true, Width = 600 };
+        public Button btn_output_folder_summary = new Button { Text = "...", AutoSize = true, BackColor = Color.AliceBlue, Width = 30, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public FolderBrowserDialog fbd_output_folder_summary = new FolderBrowserDialog();
+        public Label lbl_empty_txt_output_folder_summary = new Label { Text = "  ", Width = 10, Font = new Font("Arial", 11, FontStyle.Bold) };
 
 
         public Label lbl_speechAnnotation_summary = new Label { Text = "Speech Annotation File:", AutoSize = true, Font = new Font("Arial", 11, FontStyle.Bold) };
@@ -42,10 +48,10 @@ namespace MAGiC
 
         public TableLayoutPanel pnl_single_summary, pnl_multiple_summary;
 
-        public ErrorProvider errorProvider_outputFile_summary = new System.Windows.Forms.ErrorProvider();
+        public ErrorProvider errorProvider_outputFolder_summary = new System.Windows.Forms.ErrorProvider();
         public ErrorProvider errorProvider_speechAnnotation_file_summary = new System.Windows.Forms.ErrorProvider();
         
-        public Label lbl_empty_outputfile_summary = new Label { Text = "  ", Width = 10, Font = new Font("Arial", 11, FontStyle.Bold) };
+        public Label lbl_empty_outputfolder_summary = new Label { Text = "  ", Width = 10, Font = new Font("Arial", 11, FontStyle.Bold) };
         public Label lbl_empty_speechAnnotationfile_summary = new Label { Text = "  ", Width = 10, Font = new Font("Arial", 11, FontStyle.Bold) };
 
         //Single
@@ -142,7 +148,7 @@ namespace MAGiC
         public TableLayoutPanel getLayout()
         {
             //start to design interface
-            TableLayoutPanel pnl_main_summary = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink , Height = 800 };
+            TableLayoutPanel pnl_main_summary = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, BackColor=Color.WhiteSmoke, AutoSizeMode = AutoSizeMode.GrowAndShrink , Height = 800 };
             pnl_main_summary.Margin = new Padding(0);
             pnl_main_summary.ColumnCount = 4;
             pnl_main_summary.RowCount = 3;
@@ -159,12 +165,12 @@ namespace MAGiC
 
             pnl_inner_summary.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
 
-            pnl_inner_summary.Controls.Add(lbl_output_file_summary, 0, 2);
-            pnl_inner_summary.Controls.Add(txt_outputFile_summary, 1, 2);
-            pnl_inner_summary.Controls.Add(lbl_empty_outputfile_summary, 2, 2);
-            pnl_inner_summary.Controls.Add(btn_createFileOutput_summary, 3, 2);
-            tt_output_file_summary.SetToolTip(txt_outputFile_summary, Constants.TOOLTIP_OUTPUTFOLDER_FILE);
-
+            pnl_inner_summary.Controls.Add(lbl_output_folder_summary, 0, 2);
+            pnl_inner_summary.Controls.Add(txt_output_folder_summary, 1, 2);
+            tt_output_folder_summary.SetToolTip(txt_output_folder_summary, Constants.TOOLTIP_OUTPUTFOLDER_FILE);
+            pnl_inner_summary.Controls.Add(lbl_empty_outputfolder_summary, 2, 2);
+            pnl_inner_summary.Controls.Add(btn_output_folder_summary, 3, 2);
+            
 
             pnl_inner_summary.Controls.Add(lbl_speechAnnotation_summary, 0, 3);
             pnl_inner_summary.Controls.Add(txt_speechAnnotation_summary, 1, 3);
@@ -262,7 +268,7 @@ namespace MAGiC
             errorProvider_expInterval_summary_single.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             errorProvider_eyetrackerFrequency_pair.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             errorProvider_eyetrackerFrequency_single.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            errorProvider_outputFile_summary.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider_outputFolder_summary.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             errorProvider_participantID_pair.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             errorProvider_speechAnnotation_file_summary.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             

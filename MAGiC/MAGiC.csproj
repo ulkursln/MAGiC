@@ -26,7 +26,7 @@
     <SupportUrl>https://github.com/ulkursln/MAGiC</SupportUrl>
     <ProductName>MAGiC</ProductName>
     <PublisherName>METU</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -114,6 +114,9 @@
     <OutputPath>bin\x86\32\</OutputPath>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>images\top.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -171,7 +174,19 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\CustomTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utility\CustomTree.Designer.cs">
+      <DependentUpon>CustomTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ImageConversion.cs" />
+    <Compile Include="Utility\OutlookBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utility\OutlookBar.Designer.cs">
+      <DependentUpon>OutlookBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ResizeBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -184,6 +199,30 @@
     <Compile Include="walkthrough\Info.cs" />
     <Compile Include="walkthrough\View\SpeechAnalysisWalkthroughUI.cs" />
     <Compile Include="walkthrough\View\SummaryWalkthroughUI.cs" />
+    <EmbeddedResource Include="HomeScreen.resx">
+      <DependentUpon>HomeScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\OutlookBar.resx">
+      <DependentUpon>OutlookBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="images\homePage2.png" />
+    <Content Include="images\AOIAnalysisResized.png" />
+    <Content Include="images\face.png" />
+    <Content Include="images\grayIcon.png" />
+    <Content Include="images\homePage2Resized.png" />
+    <None Include="images\mouseHand.png" />
+    <Content Include="images\notebook_1.png" />
+    <Content Include="images\sound.png" />
+    <Content Include="images\speech %282%29.png" />
+    <Content Include="images\speechAnalysis.png" />
+    <Content Include="images\speechAnalysis2.png" />
+    <Content Include="images\speechAnalysis2Resized.png" />
+    <Content Include="images\speechAnalysisResized.png" />
+    <Content Include="images\summaryResized.png" />
+    <Content Include="images\top.ico" />
+    <Content Include="images\walkthrough.png" />
+    <None Include="images\walkthroughResized.png" />
+    <Content Include="images\walkthrough3.png" />
     <Content Include="speech_analysis\Sphinx4Files\sphinx4-core-all-1.0.jar">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -738,16 +777,63 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="aoi_analysis\OpenFaceFiles\classifiers\haarcascade_frontalface_alt.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="aoi_analysis\OpenFaceFiles\classifiers\haarcascade_frontalface_alt2.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="aoi_analysis\OpenFaceFiles\classifiers\haarcascade_frontalface_alt_tree.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="aoi_analysis\OpenFaceFiles\classifiers\haarcascade_frontalface_default.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="aoi_analysis\OpenFaceFiles\classifiers\haarcascade_profileface.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

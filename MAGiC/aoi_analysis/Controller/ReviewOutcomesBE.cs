@@ -150,15 +150,14 @@ namespace MAGiC
 
             int first_frame_num = 0, last_frame_num = 0, total_frame = 0;
 
-            if (controls.cb_visualizeJustExpInterval_visualizeTracking.Checked)
-            {
-                Constants.ParticipantInfo participantInfo = Constants.ParticipantInfo.Single;
-                if (controls.rbOptionSingleParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.Single;
-                else if (controls.rbOptionFirstParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.First;
-                else if (controls.rbOptionSecondParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.Second;
-                UtilityFunctions.findStartingEndingFrameNo(fileName_expInterval, participantNo, participantInfo, frequency, ref first_frame_num, ref last_frame_num);
+     
+           Constants.ParticipantInfo participantInfo = Constants.ParticipantInfo.Single;
+           if (controls.rbOptionSingleParticipant_AOIDetectionRatio.Checked) participantInfo = Constants.ParticipantInfo.Single;
+           else if (controls.rbOptionFirstParticipant_AOIDetectionRatio.Checked) participantInfo = Constants.ParticipantInfo.First;
+           else if (controls.rbOptionSecondParticipant_AOIDetectionRatio.Checked) participantInfo = Constants.ParticipantInfo.Second;
+           UtilityFunctions.findStartingEndingFrameNo(fileName_expInterval, participantNo, participantInfo, frequency, ref first_frame_num, ref last_frame_num);
 
-            }
+            
 
             total_frame = last_frame_num - first_frame_num + 1;
 
@@ -184,13 +183,13 @@ namespace MAGiC
 
                 if (arr_line_aois.Length < 2)
                     numberofNotDetectedAOIs++;
-                else if (String.IsNullOrEmpty(arr_line_aois[1]))
+                else if (String.IsNullOrEmpty(arr_line_aois[1]) || Constants.FaceDetectionEmpty.Equals(arr_line_aois[1]) || Constants.BothFaceDetectionGazeRawDataEmpty.Equals(arr_line_aois[1]) || Constants.GazeRawDataEmpty.Equals(arr_line_aois[1]))
                     numberofNotDetectedAOIs++;
-                else if (Constants.FaceDetectionEmpty.Equals(arr_line_aois[1]))
+                if (Constants.FaceDetectionEmpty.Equals(arr_line_aois[1]))
                     numberofEmptyFaceDetection++;
-                else if (Constants.BothFaceDetectionGazeRawDataEmpty.Equals(arr_line_aois[1]))
+                if (Constants.BothFaceDetectionGazeRawDataEmpty.Equals(arr_line_aois[1]))
                     numberofEmptyBoth++;
-                else if (Constants.GazeRawDataEmpty.Equals(arr_line_aois[1]))
+                if (Constants.GazeRawDataEmpty.Equals(arr_line_aois[1]))
                     numberOFEmptyGazeRawData++;
 
 
@@ -199,7 +198,7 @@ namespace MAGiC
             writeToFileStr += " Number of Not Detected AOIs:" + numberofNotDetectedAOIs + "\n Number of Total Frame:" + total_frame + "\n Ratio of Not Detected:" + Math.Round(((double)numberofNotDetectedAOIs / (double)total_frame) * 100, 2) + "\n\n";
             writeToFileStr += " Number of Empty Face Detection(both + just face detection empty):" + (numberofEmptyFaceDetection + numberofEmptyBoth )+ "\n Number of Total Frame:" + total_frame + "\n Ratio of Not Detected:" + Math.Round(((double)(numberofEmptyFaceDetection + numberofEmptyBoth) / (double)total_frame) * 100, 2) + "\n\n";
             writeToFileStr += " Number of Empty Gaze Raw Data(both + just raw data empty):" + (numberOFEmptyGazeRawData + numberofEmptyBoth ) + "\n Number of Total Frame:" + total_frame + "\n Ratio of Not Detected:" + Math.Round(((double)(numberOFEmptyGazeRawData + numberofEmptyBoth) / (double)total_frame) * 100, 2) + "\n\n";
-            writeToFileStr += " Number of Empty Both:" + numberofEmptyBoth + "\n Number of Total Frame:" + total_frame + "\n Ratio of Not Detected:" + Math.Round(((double)numberofEmptyBoth / (double)total_frame) * 100, 2) + "\n\n";
+            writeToFileStr += " Number of Empty Both Face Detection and Empty Gaze Raw Data:" + numberofEmptyBoth + "\n Number of Total Frame:" + total_frame + "\n Ratio of Not Detected:" + Math.Round(((double)numberofEmptyBoth / (double)total_frame) * 100, 2) + "\n\n";
             writeToFileStr += "\n";
 
 
@@ -285,6 +284,8 @@ namespace MAGiC
 
         private void btn_visualize_visualizeTracking_Click(object sender, EventArgs e)
         {
+
+
             bool errror = false;
             string videoFileName = controls.txt_videoFile_visualizeTracking.Text;
             if (String.IsNullOrEmpty(videoFileName) || String.IsNullOrWhiteSpace(videoFileName) || !File.Exists(videoFileName))
@@ -635,6 +636,9 @@ namespace MAGiC
 
         private void btn_labelROIManually_Click(object sender, EventArgs e)
         {
+
+     
+
             bool errror = false;
 
             string outputFile = controls.txt_outputFile_labelROIManually.Text;
@@ -846,9 +850,9 @@ namespace MAGiC
                 if (controls.cb_visualizeJustExpInterval_labelROIManually.Checked)
                 {
                     Constants.ParticipantInfo participantInfo = Constants.ParticipantInfo.Single;
-                    if (controls.rbOptionSingleParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.Single;
-                    else if (controls.rbOptionFirstParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.First;
-                    else if (controls.rbOptionSecondParticipant_visualizeTracking.Checked) participantInfo = Constants.ParticipantInfo.Second;
+                    if (controls.rbOptionSingleParticipant_labelROIManually.Checked) participantInfo = Constants.ParticipantInfo.Single;
+                    else if (controls.rbOptionFirstParticipant_labelROIManually.Checked) participantInfo = Constants.ParticipantInfo.First;
+                    else if (controls.rbOptionSecondParticipant_labelROIManually.Checked) participantInfo = Constants.ParticipantInfo.Second;
                     UtilityFunctions.findStartingEndingFrameNo(fileName_experimentInterval, participantNo, participantInfo, frequency, ref startingFrameNo, ref endingFrameNo);
 
                 }
@@ -1196,7 +1200,7 @@ namespace MAGiC
         {
             controls.sfd_outputFile_reanalyzeAOI.InitialDirectory = @"C:\";
             controls.sfd_outputFile_reanalyzeAOI.Title = "Save text File";
-            controls.sfd_outputFile_reanalyzeAOI.FileName = "faceAsROI.txt";
+            controls.sfd_outputFile_reanalyzeAOI.FileName = "faceAsROI_mergedManual.txt";
             controls.sfd_outputFile_reanalyzeAOI.CheckPathExists = true;
             controls.sfd_outputFile_reanalyzeAOI.DefaultExt = "txt";
             controls.sfd_outputFile_reanalyzeAOI.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";

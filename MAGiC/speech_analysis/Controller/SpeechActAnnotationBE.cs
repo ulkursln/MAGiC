@@ -131,6 +131,11 @@ namespace MAGiC
             string urlToPlay = "";
 
             urlToPlay = annotateAndReturnNextURL();
+            if (urlToPlay == null)
+            {
+                MessageBox.Show("End of Audio List, please click the Save button to save the annotations!!");
+                return;
+            }
 
             controls.axWindowsMediaPlayer1.URL = urlToPlay;
             loadingPlayer = true;
@@ -164,9 +169,15 @@ namespace MAGiC
                             controls.txt_outputFileContent_annotation.Text += speechacts.Name;
                         i++;
                     }
+
+                    controls.txt_outputFileContent_annotation.ScrollToCaret();
                 }
 
+                if ((controls.lb_audioFiles_annotation.SelectedIndex + 1) == controls.lb_audioFiles_annotation.Items.Count)
+                    return null; //end of story
+
                 urlToPlay = ((Constants.AudioFilesNameAndPath)(controls.lb_audioFiles_annotation.Items[controls.lb_audioFiles_annotation.SelectedIndex + 1])).Path;
+                
                 controls.lb_audioFiles_annotation.SelectedIndex = controls.lb_audioFiles_annotation.SelectedIndex + 1;
                 controls.lb_speechAct_annotation.SelectedItem = null;
             }
@@ -244,6 +255,8 @@ namespace MAGiC
         private void btn_load_segment_interval_annotation_Click(object sender, EventArgs e)
         {
             string fileName = "";
+            List<Constants.AudioFilesNameAndPath> lb_audioFiles_annotationWithInterval = null;
+            audioFileNameWithSegmentedInterval = new Dictionary<string, int[]>();
 
             controls.ofd_segmentInterval_annotation.InitialDirectory = "c:\\";
             controls.ofd_segmentInterval_annotation.Filter = "txt files (*.txt)|*.txt";
@@ -267,6 +280,12 @@ namespace MAGiC
                     string line = "", segment_num = "";
                     int interval1 = 0, interval2 = 0, index = 1;
                     System.IO.StreamReader file_segment_interval = new System.IO.StreamReader(fileName);
+
+                    if (controls.lb_audioFiles_annotation != null && controls.lb_audioFiles_annotation.Items != null )
+                    {
+                        lb_audioFiles_annotationWithInterval = controls.lb_audioFiles_annotation.Items.Cast<Constants.AudioFilesNameAndPath>().ToList();
+                    }
+
                     while ((line = file_segment_interval.ReadLine()) != null)
                     {
                         words_segment_interval = line.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
@@ -292,11 +311,21 @@ namespace MAGiC
                         }
 
                         audioFileNameWithSegmentedInterval.Add(segment_num, new int[] { interval1, interval2 });
+                        if(lb_audioFiles_annotationWithInterval != null && lb_audioFiles_annotationWithInterval.Count> Convert.ToInt32(segment_num))
+                        {
+                            Constants.AudioFilesNameAndPath member = lb_audioFiles_annotationWithInterval.ElementAt(Convert.ToInt32(segment_num));
+                            member.Interval = interval1 + "-" + interval2;
+
+                        }
+                          
 
                     }
                     segmentIntervalLoaded = true;
                     controls.errorProvider_load_segmentInterval_annotation.Clear();
                     controls.errorProvider_load_segmentInterval_annotation.SetError(controls.btn_load_segmentInterval_annotation, "");
+                    controls.lb_audioFiles_annotation.Items.Clear();
+                    controls.lb_audioFiles_annotation.DataSource = lb_audioFiles_annotationWithInterval;
+
                 }
                 catch (Exception ex)
                 {
@@ -564,6 +593,15 @@ namespace MAGiC
                 allLines.Add(speechActs.Id + ";" + speechActs.Name);
             }
             File.WriteAllLines(controls.txt_outputFile_speechAct.Text, allLines.ToArray());
+
+            controls.lb_audioFiles_annotation.DataSource = null;
+            controls.lb_audioFiles_annotation.Items.Clear();
+            controls.lb_speechAct_annotation.DataSource = null;
+            controls.lb_speechAct_annotation.Items.Clear();
+            controls.txt_outputFile_annotation.Text = "";
+            controls.txt_duration_wmlayer_annotation.Text = "";
+            controls.txt_outputFileContent_annotation.Text = "";
+
             //controls.lb_speechAct.Items.Clear();
             MessageBox.Show("Succesfully done!!");
 

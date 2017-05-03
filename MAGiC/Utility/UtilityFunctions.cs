@@ -53,31 +53,33 @@ namespace MAGiC
                 {
                     if (participantInfo == Constants.ParticipantInfo.Second)
                     {
-                        startingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, words_experiment_interval[3]); //round up, for instance for 30 Hz eye tracker 0-30 ms refers first frame not 0
-                        endingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, words_experiment_interval[4]);
+                        //when calculate ending frame by converting ending millisecond value to frame number as in finding the starting frame number case, it might cause different number of frame numbers in a pair, because of conversion issues. 
+                        //thus ending frame number is calculated based on difference value which is absolutely same in a pair.
+                        startingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, Convert.ToInt32(words_experiment_interval[3])); //round up, for instance for 30 Hz eye tracker 0-30 ms refers first frame not 0
+                        endingFrameNo = startingFrameNo + convertMilliSecondToEyeTrackerFrameNo(frequency, (Convert.ToInt32(words_experiment_interval[4]) - Convert.ToInt32(words_experiment_interval[3])) ) -1;
                         return;
                     }
                     else
                     {
-                        startingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, words_experiment_interval[1]); //round up, for instance for 30 Hz eye tracker 0-30 ms refers first frame not 0
-                        endingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, words_experiment_interval[2]);
+                        startingFrameNo = convertMilliSecondToEyeTrackerFrameNo(frequency, Convert.ToInt32(words_experiment_interval[1])); //round up, for instance for 30 Hz eye tracker 0-30 ms refers first frame not 0
+                        endingFrameNo = startingFrameNo+ convertMilliSecondToEyeTrackerFrameNo(frequency, (Convert.ToInt32(words_experiment_interval[2]) - Convert.ToInt32(words_experiment_interval[1])) ) -1;
                         return;
                     }
                 }
             }
         }
 
-        public static int convertMilliSecondToEyeTrackerFrameNo(int frequency, string millisecondVal)
+        public static int convertMilliSecondToEyeTrackerFrameNo(int frequency, int millisecondVal)
         {
             return (Convert.ToInt32(millisecondVal) * frequency / 1000 + 1);
         }
 
         public static int convertnextMilliSecondToEyeTrackerFrameNo(int frequency, string millisecondVal)
         {
-            return ((Convert.ToInt32(millisecondVal)+1) * frequency / 1000 + 1);
+            return ((Convert.ToInt32(millisecondVal) + 1) * frequency / 1000 + 1);
         }
 
-        private static string getNewFileName(string file, int initialSegmentNum,int endingSegmentNum)
+        private static string getNewFileName(string file, int initialSegmentNum, int endingSegmentNum)
         {
             string nameWithoutExtension = Path.GetFileNameWithoutExtension(file);
             if (nameWithoutExtension != null && nameWithoutExtension.Length > 0)
@@ -85,8 +87,8 @@ namespace MAGiC
                 if (Convert.ToInt32(nameWithoutExtension) > endingSegmentNum)
                     return "";
                 int diff = (Convert.ToInt32(nameWithoutExtension) - (initialSegmentNum + 1));
-                if(diff>=0)
-                   return Path.Combine(Path.GetDirectoryName(file), diff.ToString() + Path.GetExtension(file));
+                if (diff >= 0)
+                    return Path.Combine(Path.GetDirectoryName(file), diff.ToString() + Path.GetExtension(file));
                 return "";
             }
             return "";
@@ -96,16 +98,16 @@ namespace MAGiC
         {
             IEnumerable<string> files = Directory.EnumerateFiles(directory);
 
-           IOrderedEnumerable<FileSystemInfo> vv = new DirectoryInfo(directory).GetFileSystemInfos("*.wav").OrderBy(fs => int.Parse(fs.Name.Split('\\').Last().Substring(0, fs.Name.Split('\\').Last().Length - fs.Extension.Length)));
+            IOrderedEnumerable<FileSystemInfo> vv = new DirectoryInfo(directory).GetFileSystemInfos("*.wav").OrderBy(fs => int.Parse(fs.Name.Split('\\').Last().Substring(0, fs.Name.Split('\\').Last().Length - fs.Extension.Length)));
 
-          
+
             foreach (FileSystemInfo filesystemInf in vv.ToList())
             {
                 try
                 {
                     string file = filesystemInf.FullName;
                     FileInfo info = new FileInfo(file);
-                    if (Path.GetExtension(info.FullName)==".wav" && !info.IsReadOnly && !info.Attributes.HasFlag(FileAttributes.System))
+                    if (Path.GetExtension(info.FullName) == ".wav" && !info.IsReadOnly && !info.Attributes.HasFlag(FileAttributes.System))
                     {
                         string destFileName = getNewFileName(file, initialSegmentNum, endingSegmentNum);
 
@@ -119,7 +121,7 @@ namespace MAGiC
                 {
                     throw;
                 }
-         
+
             }
         }
 
@@ -130,7 +132,7 @@ namespace MAGiC
             if (dic.TryGetValue(key, out val))
             {
                 // yay, value exists!
-                dic[key] = val + ","+line;
+                dic[key] = val + "," + line;
             }
             else
             {
@@ -209,14 +211,12 @@ namespace MAGiC
                     }
                 }
 
-
-                if (manually_tracked_dict != null && manually_tracked_dict.Count > 0 && manually_tracked_dict.TryGetValue(frame_num, out letter)) //manualy tracked value override face tracking outcomes
-                {
-                    if (letter.Equals("NULL"))
-                        letter = "";
-                    AOIs += frame_num + " " + letter + "\n";
-                }
-                else if (line_raw_data != null)
+                bool gaze_raw_data_empty = false, face_detection_empty = false;
+                List<Point> face = new List<Point>();
+                List<Point> nose_rect = new List<Point>();
+                List<Point> eye_rect = new List<Point>();
+                List<Point> mouth_rect = new List<Point>();
+                if (line_raw_data != null)
                 {
                     words_eye_tracker_generated_file = line_raw_data.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
@@ -229,10 +229,12 @@ namespace MAGiC
                         frame_num = Convert.ToInt32(words_features[0]);
 
                     }
+                    if (frame_num != frame_num_raw_data)
+                        throw new Exception("There is a problem in the size of 2dLandmarks file and eye tracker generated raw gaze data file. Please be sure you import the accurate files!!");
 
                     fixation_type = words_eye_tracker_generated_file[1];
                     success = Convert.ToInt32(words_features[3]);
-                    bool gaze_raw_data_empty = false, face_detection_empty = false;
+                    gaze_raw_data_empty = false; face_detection_empty = false;
                     if ((fixation_type == Constants.EyeTrackerNotEmptyLineTxt))
                     {
                         raw_x = words_eye_tracker_generated_file[2];
@@ -242,11 +244,6 @@ namespace MAGiC
                     {
                         gaze_raw_data_empty = true;
                     }
-
-                    List<Point> face = new List<Point>();
-                    List<Point> nose_rect = new List<Point>();
-                    List<Point> eye_rect = new List<Point>();
-                    List<Point> mouth_rect = new List<Point>();
 
                     int total_num_of_empy = 0;
                     for (int i = 4; i < 31; i++)
@@ -259,6 +256,36 @@ namespace MAGiC
 
                     if (total_num_of_empy >= 4)
                         face_detection_empty = true;
+                }
+
+                bool addedtoAOIsFrame = false;
+                if (manually_tracked_dict != null && manually_tracked_dict.Count > 0 && manually_tracked_dict.TryGetValue(frame_num, out letter)) //manualy tracked value override face tracking outcomes
+                {
+                    if (letter.Equals("NULL"))  //while manual tracking, when user does not decide what is the appropriate AOI to assign, s/he press 0  and it assign Null to the related frame, most probably because of the empty gaze row data 
+                    {
+                        string newAOIs = "";
+                        newAOIs = assignTheProblematicIssueLabel(frame_num, AOIs, gaze_raw_data_empty, face_detection_empty);
+                        if (String.IsNullOrEmpty(newAOIs)) //sometimes if we assign null while manually track, but actually, there was no face detection issue or gaze raw data empty problem, assignTheProblematicIssueLabel do not add new line to the AOIs, for this cases it is necessary to add related frame AOI, based on detected face and raw gaze data.
+                            addedtoAOIsFrame = false;
+                        else
+                        {
+                            AOIs = newAOIs;
+                            addedtoAOIsFrame = true;
+                        }
+
+
+                    }
+
+                    else
+                    {
+                        AOIs += frame_num + " " + letter + "\n";
+                        addedtoAOIsFrame = true;
+                    }
+                }
+                if(!addedtoAOIsFrame && line_raw_data != null)
+                {
+                    
+
                     if (!gaze_raw_data_empty && !face_detection_empty)
                     {
 
@@ -315,12 +342,7 @@ namespace MAGiC
 
                     else
                     {
-                        if (face_detection_empty && !gaze_raw_data_empty)
-                            AOIs += frame_num + " " + Constants.FaceDetectionEmpty + "\n";
-                        else if (face_detection_empty && gaze_raw_data_empty)
-                            AOIs += frame_num + " " + Constants.BothFaceDetectionGazeRawDataEmpty + "\n";
-                        else if (!face_detection_empty && gaze_raw_data_empty)
-                            AOIs += frame_num + " " + Constants.GazeRawDataEmpty + "\n";
+                        AOIs = assignTheProblematicIssueLabel(frame_num, AOIs, gaze_raw_data_empty, face_detection_empty);
 
                     }
 
@@ -330,6 +352,19 @@ namespace MAGiC
 
             return AOIs;
 
+        }
+
+        private static string assignTheProblematicIssueLabel(int frame_num, string AOIs, bool gaze_raw_data_empty, bool face_detection_empty)
+        {
+            if (face_detection_empty && !gaze_raw_data_empty)
+                AOIs += frame_num + " " + Constants.FaceDetectionEmpty + "\n";
+            else if (face_detection_empty && gaze_raw_data_empty)
+                AOIs += frame_num + " " + Constants.BothFaceDetectionGazeRawDataEmpty + "\n";
+            else if (!face_detection_empty && gaze_raw_data_empty)
+                AOIs += frame_num + " " + Constants.GazeRawDataEmpty + "\n";
+            else//sometimes if we assign null while manually track, but actually, there was no face detection issue or gaze raw data empty problem, assignTheProblematicIssueLabel do not add new line to the AOIs, for this cases it is necessary to add related frame AOI, based on detected face and raw gaze data.so return null here to check in the returned function
+                return "";
+            return AOIs;
         }
 
         public static string determineAOIForFeatures(string raw_x, string raw_y, Dictionary<string, List<Point>> allFeaturePointLists, ImageConversion imageConversion)
@@ -468,6 +503,8 @@ namespace MAGiC
                         AOI = Constants.AOI_c;
 
 
+
+
                     AOI += min_rect + " " + x + "," + y;
 
                 }
@@ -483,6 +520,6 @@ namespace MAGiC
         }
 
 
-  
+
     }
 }

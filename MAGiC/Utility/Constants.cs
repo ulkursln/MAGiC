@@ -12,9 +12,9 @@ namespace MAGiC
 
         //LEFTPANE
         public static string LEFTPANE_HOME = "Home";
-        public static string LEFTPANE_SPEECHANALYSIS = "\n\n 1)Speech Analysis";
-        public static string LEFTPANE_AOIANALYSIS = "\n\n 2)AOI Analysis";
-        public static string LEFTPANE_SUMMARY = "\n\n 3)Summary";
+        public static string LEFTPANE_SPEECHANALYSIS = "\n\n1) Speech Analysis";
+        public static string LEFTPANE_AOIANALYSIS = "\n\n2) AOI Analysis";
+        public static string LEFTPANE_SUMMARY = "\n\n3) Summary";
 
         //MESSAGES
         public static string MESSAGE_ENTER_SPEECH_ACT = "Please Enter Speech-Act";
@@ -58,7 +58,7 @@ namespace MAGiC
         //TOOLTIP
         public static string TOOLTIP_ENTER_POSITIVE_INTEGER_VALUE = "Please enter a valid positive integer value.";
         public static string TOOLTIP_OUTPUTFOLDER_FILE = "Please make sure that the path does not contain spaces or unusual characters. \r\nE.g. 'C://Program Files// is a wrong path because of a space character inside 'Program Files'";
-        public static string TOOLTIP_OUTPUTFILE_CREATEORLOAD= "Create a new file or open an existing file. \r\nPlease make sure that the path does not contain spaces or unusual characters. \r\nE.g. 'C://Program Files// is a wrong path because of a space character inside 'Program Files'";
+        public static string TOOLTIP_OUTPUTFILE_CREATEORLOAD = "Create a new file or open an existing file. \r\nPlease make sure that the path does not contain spaces or unusual characters. \r\nE.g. 'C://Program Files// is a wrong path because of a space character inside 'Program Files'";
         public static string TOOLTIP_VIDEORECORDING = "Please select a video recording in avi format.";
         public static string TOOLTIP_AUDIOFILE = "Please select an audio file that was generated in the previous 'Extract and Format Audio' step.";
         public static string TOOLTIP_ENTER_DECIMAL_VALUE_BETWEEN_O_1 = "Please enter a decimal value between 0 and 1.";
@@ -129,6 +129,29 @@ namespace MAGiC
         public static string AOI_i = "i";
 
 
+        //TREE NODE COLORS
+        public static Color thirdLevelColor = Color.FromArgb(134, 190, 203);
+        public static Color secondLevelColor = Color.FromArgb(26, 163, 163);
+        public static Color firstLevelColor = Color.FromArgb(11, 94, 86);
+        public static Color rootColor = Color.FromArgb(5, 41, 38);
+
+
+        //walkthrough titles
+        public static string WalkthroughTitleExtractFormatAudio = " Walkthrough - Extract and Format Audio";
+        public static string WalkthroughTitleSegmentAudio = "Walkthrough - Segment Audio";
+        public static string WalkthroughTitleTimeIntervalEstimation = "Walkthrough - Time Interval Estimation & Synchronization";
+        public static string WalkthroughTitleDefineSpeechActs = "Walkthrough - Define Speech-Acts";
+        public static string WalkthroughTitleAnnotation = "Walkthrough - Speech Annotation";
+        public static string WalkthroughTitleFaceTrackingDefaultDetector = "Walkthrough - Face Tracking (wtih default detector)";
+        public static string WalkthroughTitleFaceTrackingTrainedDetector = "Walkthrough - Face Tracking (with trained detector)";
+        public static string WalkthroughTitlePreProcessGazeData = "Walkthrough - Pre-Process Gaze Data";
+        public static string WalkthroughTitleFaceasAOI = "Walkthrough - Face as AOI";
+        public static string WalkthroughTitleVisualizeTracking = "Walkthrough - Visualize Tracking";
+        public static string WalkthroughTitleFindAOIsDetectionRatio = "Walkthrough - Find AOIs Detection Ratio";
+        public static string WalkthroughTitleLabelAOIsManually = "Walkthrough - Label AOIs Manually";
+        public static string WalkthroughTitleReanalyseAOIs = "Walkthrough - Re-analyse AOIs(considering manually labeled AOIs)";
+        public static string WalkthroughTitleSummary = "Walkthrough - Summary";
+
         public struct SpeechActs
         {
             public string Name;
@@ -147,21 +170,24 @@ namespace MAGiC
 
         }
 
-        public struct AudioFilesNameAndPath
+        public class AudioFilesNameAndPath
         {
             public string Name;
             public string Path;
+            public string Interval;
 
             public override string ToString()
             {
-                return Name;
+                return Interval == "" ? Name : Name + " " + "(Interval:" + Interval + ")";
             }
 
             public AudioFilesNameAndPath(string _name, string _path)
             {
                 Name = _name;
                 Path = _path;
+                Interval = "";
             }
+
 
         }
 

@@ -407,7 +407,7 @@ namespace MAGiC
 
         public static string TEXT_INFO = "Info";
         public static string TEXT_STEPS = "Steps:";
-        public static string TEXT_BUTTON_GOTOHOME = "Go to Home";
+        public static string TEXT_BUTTON_GOTOHOME = "Go to Walkthrough-Tree";
         public static string TEXT_BUTTON_GOTOFUNCTION = "Go to Function";
         public static string TEXT_OUTPUT = "Output";
         public static string TEXT_SAMPLES = "Samples";

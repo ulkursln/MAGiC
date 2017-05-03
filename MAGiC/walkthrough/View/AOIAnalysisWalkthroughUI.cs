@@ -232,8 +232,8 @@ namespace MAGiC
         };
 
 
-        public Button btn_gotoFunction_home_trackingWithDefaultDetector_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_trackingWithDefaultDetector_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_trackingWithDefaultDetector_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_trackingWithDefaultDetector_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion
 
 
@@ -621,8 +621,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_trackingWithTrainedDetector_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_trackingWithTrainedDetector_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_trackingWithTrainedDetector_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_trackingWithTrainedDetector_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion
 
 
@@ -761,8 +761,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_preprocessGazeData_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_preprocessGazeData_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_preprocessGazeData_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_preprocessGazeData_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of Preprocess Gaze Data controls*/
 
 
@@ -960,8 +960,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_detectAOIs_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_detectAOIs_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_detectAOIs_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_detectAOIs_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of Detect AOIs controls*/
 
 
@@ -1246,8 +1246,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_visualizeTracking_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_visualizeTracking_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_visualizeTracking_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_visualizeTracking_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of Visualize Tracking controls*/
 
 
@@ -1403,8 +1403,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_findAOIsDetectionRatio_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_findAOIsDetectionRatio_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_findAOIsDetectionRatio_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_findAOIsDetectionRatio_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of find AOIs Detection Ratio controls*/
 
 
@@ -1718,8 +1718,8 @@ namespace MAGiC
 
         };
 
-        public Button btn_gotoFunction_home_labelAOIsManually_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_labelAOIsManually_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_labelAOIsManually_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_labelAOIsManually_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of Label AOIs Manually controls*/
 
 
@@ -1915,8 +1915,8 @@ namespace MAGiC
         };
 
 
-        public Button btn_gotoFunction_home_reanalyseAOIs_AOIAnalysis = new Button { Text = "Go to Home", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
-        public Button btn_gotoFunction_reanalyseAOIs_AOIAnalysis = new Button { Text = "Go to Function", AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_home_reanalyseAOIs_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOHOME, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
+        public Button btn_gotoFunction_reanalyseAOIs_AOIAnalysis = new Button { Text = Info.TEXT_BUTTON_GOTOFUNCTION, AutoSize = true, BackColor = Color.AliceBlue, Font = new Font("Arial", 10, FontStyle.Bold) };
         #endregion End of Re-analyse AOIs controls*/
 
         public TableLayoutPanel getFaceTrackingWithDefaultDetectorWalkthroughLayout()
