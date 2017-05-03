@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\doktora\TIK4\BehavioralResearchMethods\setup\64\</PublishUrl>
+    <PublishUrl>D:\doktora\TIK4\BehavioralResearchMethods\setup\32\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <SupportUrl>https://github.com/ulkursln/MAGiC</SupportUrl>
     <ProductName>MAGiC</ProductName>
     <PublisherName>METU</PublisherName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

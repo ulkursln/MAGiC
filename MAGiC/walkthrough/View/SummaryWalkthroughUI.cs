@@ -223,7 +223,7 @@ namespace MAGiC
 
         public TableLayoutPanel getLayout()
         {
-            TableLayoutPanel pnl_main_summary = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_summary = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_summary.Margin = new Padding(0);
             pnl_main_summary.ColumnCount = 2;
             pnl_main_summary.RowCount = 2;

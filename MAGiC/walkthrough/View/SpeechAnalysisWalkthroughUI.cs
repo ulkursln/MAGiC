@@ -894,7 +894,7 @@ namespace MAGiC
         public TableLayoutPanel getExtractAndFormatAudioWalkthroughLayout()
         {
             //start to design interface 
-            TableLayoutPanel pnl_main_formatAudio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true,  AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_formatAudio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true,  AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_formatAudio.Margin = new Padding(0);
             pnl_main_formatAudio.ColumnCount = 2;
             pnl_main_formatAudio.RowCount = 2;
@@ -970,7 +970,7 @@ namespace MAGiC
 
         public TableLayoutPanel getSegmentAudioWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_segmentAudio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_segmentAudio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_segmentAudio.Margin = new Padding(0);
             pnl_main_segmentAudio.ColumnCount = 2;
             pnl_main_segmentAudio.RowCount = 2;
@@ -1056,7 +1056,7 @@ namespace MAGiC
 
         public TableLayoutPanel getSpecifyTimeIntervalWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_specifyTimeInterval = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink};
+            TableLayoutPanel pnl_main_specifyTimeInterval = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_specifyTimeInterval.Margin = new Padding(0);
             pnl_main_specifyTimeInterval.ColumnCount = 2;
             pnl_main_specifyTimeInterval.RowCount = 2;
@@ -1244,7 +1244,7 @@ namespace MAGiC
 
         public TableLayoutPanel getDefineSpeechActWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_defineSpeechAct = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_defineSpeechAct = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_defineSpeechAct.Margin = new Padding(0);
             pnl_main_defineSpeechAct.ColumnCount = 2;
             pnl_main_defineSpeechAct.RowCount = 2;
@@ -1341,7 +1341,7 @@ namespace MAGiC
 
         public TableLayoutPanel getAnnotationWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_speechActAnnotation = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_speechActAnnotation = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_speechActAnnotation.Margin = new Padding(0);
             pnl_main_speechActAnnotation.ColumnCount = 2;
             pnl_main_speechActAnnotation.RowCount = 2;

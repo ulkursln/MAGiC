@@ -631,7 +631,7 @@ namespace MAGiC
 
                 homeScreen = _homeScreen;
                 List<CheckBox> checkboxListFaceTracking = new List<CheckBox>();
-                TableLayoutPanel pnl_main_AOIAnalysis = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Color.WhiteSmoke, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink };
+                TableLayoutPanel pnl_main_AOIAnalysis = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Color.WhiteSmoke, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink};
                 pnl_main_AOIAnalysis.Margin = new Padding(0);
                 pnl_main_AOIAnalysis.ColumnCount = 1;
                 pnl_main_AOIAnalysis.RowCount = 1;

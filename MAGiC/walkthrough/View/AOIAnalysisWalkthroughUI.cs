@@ -1921,12 +1921,12 @@ namespace MAGiC
 
         public TableLayoutPanel getFaceTrackingWithDefaultDetectorWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_faceTrackingWithDefaultDetector = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_faceTrackingWithDefaultDetector = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_faceTrackingWithDefaultDetector.Margin = new Padding(0);
             pnl_main_faceTrackingWithDefaultDetector.ColumnCount = 2;
             pnl_main_faceTrackingWithDefaultDetector.RowCount = 2;
 
-            TableLayoutPanel pnl_info = new TableLayoutPanel { Dock = DockStyle.Fill, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
+            TableLayoutPanel pnl_info = new TableLayoutPanel { Dock = DockStyle.Fill, Size = new Size(800, 800), AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true};
             pnl_info.Margin = new Padding(0);
             pnl_info.ColumnCount = 2;
             pnl_info.RowCount = 13;
@@ -2064,7 +2064,7 @@ namespace MAGiC
 
         public TableLayoutPanel getFaceTrackingWithTrainedDetectorWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_faceTrackingWithTrainedDetector = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_faceTrackingWithTrainedDetector = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_faceTrackingWithTrainedDetector.Margin = new Padding(0);
             pnl_main_faceTrackingWithTrainedDetector.ColumnCount = 2;
             pnl_main_faceTrackingWithTrainedDetector.RowCount = 2;
@@ -2333,7 +2333,7 @@ namespace MAGiC
 
         public TableLayoutPanel getPreProcessGazeDataWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_preProcessGazeData = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_preProcessGazeData = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_preProcessGazeData.Margin = new Padding(0);
             pnl_main_preProcessGazeData.ColumnCount = 2;
             pnl_main_preProcessGazeData.RowCount = 2;
@@ -2415,7 +2415,7 @@ namespace MAGiC
 
         public TableLayoutPanel getDetectAOIWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_detectAOI = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_detectAOI = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_detectAOI.Margin = new Padding(0);
             pnl_main_detectAOI.ColumnCount = 2;
             pnl_main_detectAOI.RowCount = 2;
@@ -2533,7 +2533,7 @@ namespace MAGiC
 
         public TableLayoutPanel getVisualizeTrackingWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_visualizeTracking = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_visualizeTracking = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_visualizeTracking.Margin = new Padding(0);
             pnl_main_visualizeTracking.ColumnCount = 2;
             pnl_main_visualizeTracking.RowCount = 2;
@@ -2712,7 +2712,7 @@ namespace MAGiC
 
         public TableLayoutPanel getFindDetectionRatioWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_findDetectionRatio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_findDetectionRatio = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_findDetectionRatio.Margin = new Padding(0);
             pnl_main_findDetectionRatio.ColumnCount = 2;
             pnl_main_findDetectionRatio.RowCount = 2;
@@ -2812,7 +2812,7 @@ namespace MAGiC
 
         public TableLayoutPanel getLabelAOIManuallyWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_labelAOIManually = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_labelAOIManually = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_labelAOIManually.Margin = new Padding(0);
             pnl_main_labelAOIManually.ColumnCount = 2;
             pnl_main_labelAOIManually.RowCount = 2;
@@ -3005,7 +3005,7 @@ namespace MAGiC
 
         public TableLayoutPanel getReanalyseAOIWalkthroughLayout()
         {
-            TableLayoutPanel pnl_main_reanalyseAOI = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
+            TableLayoutPanel pnl_main_reanalyseAOI = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
             pnl_main_reanalyseAOI.Margin = new Padding(0);
             pnl_main_reanalyseAOI.ColumnCount = 2;
             pnl_main_reanalyseAOI.RowCount = 2;
