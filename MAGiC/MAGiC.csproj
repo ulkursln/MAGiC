@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\doktora\TIK4\BehavioralResearchMethods\setup\32\</PublishUrl>
+    <PublishUrl>D:\doktora\TIK4\BehavioralResearchMethods\setup\feature_32_bit\64\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>

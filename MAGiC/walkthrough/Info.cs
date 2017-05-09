@@ -22,7 +22,7 @@ namespace MAGiC
         public static string OUTPUT_SPEECH_EXTRACTANDFORMAT = "    An audio file  ";
 
         public static string SAMPLE_OUTPUTFOLDER_EXTRACTANDFORMAT = "(Sample: D:\\MagicTest\\SpeechAnalysis)";
-        public static string SAMPLE_AVI_SPEECH_EXTRACTANDFORMAT = "(Sample file)";
+        public static string SAMPLE_AVI_SPEECH_EXTRACTANDFORMAT = "(Sample files)";
         public static string SAMPLE_WAV_SPEECH_EXTRACTANDFORMAT = "(Sample file)";
         #endregion
         /// *******************************************************************************
@@ -151,7 +151,7 @@ namespace MAGiC
         
 
         public static string SAMPLE_OUTPUTFOLDER_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample: D:\\MagicTest\\AOIAnalysis\\1)";
-        public static string SAMPLE_AVI_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample file)";
+        public static string SAMPLE_AVI_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample files)";
         public static string SAMPLE_OUTPUT_2dLANDMARK_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample file)";
         public static string SAMPLE_OUTPUT_3dLANDMARK_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample file)";
         public static string SAMPLE_OUTPUT_IMAGESIZEFILE_AOI_TRACKINGWITHDEFAULTDETECTOR = "(Sample file)";
@@ -191,7 +191,7 @@ namespace MAGiC
         public static string OUTPUT_ACTIONUNIT_AOI_TRACKINGWITHTRAINEDDETECTOR = "    Action Units File  ";
 
         public static string SAMPLE_OUTPUTFOLDER_EXTRACT_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample: D:\\MagicTest\\AOIAnalysis\\1\\Frames)";
-        public static string SAMPLE_AVI_EXTRACT_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample file)";
+        public static string SAMPLE_AVI_EXTRACT_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample files)";
         public static string SAMPLE_OUTPUTFOLDER_TRAINING_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample: D:\\MagicTest\\AOIAnalysis\\1)";
         public static string SAMPLE_OUTPUTFOLDER_TRACKING_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample: D:\\MagicTest\\AOIAnalysis\\1\\TrackingWithTrainedDetector)";
         public static string SAMPLE_OUTPUT_FRAMES_EXTRACT_AOI_TRACKINGWITHTRAINEDDETECTOR = "(Sample file)";
@@ -272,7 +272,7 @@ namespace MAGiC
 
         public static string OUTPUT_AOI_VISUALIZETRACKING = "    Each frame that is overlaid by facial landmarks, AOI-label and gaze point location will be presented.  ";
 
-        public static string SAMPLE_AVI_AOI_VISUALIZETRACKING = "(Sample file)";
+        public static string SAMPLE_AVI_AOI_VISUALIZETRACKING = "(Sample files)";
         public static string SAMPLE_2dLANDMARK_AOI_VISUALIZETRACKING = "(Sample file)";
         public static string SAMPLE_RAWGAZEDATA_AOI_VISUALIZETRACKING = "(Sample file)";
         public static string SAMPLE_AOIS_AOI_VISUALIZETRACKING = "(Sample file)";
@@ -335,7 +335,7 @@ namespace MAGiC
         public static string OUTPUT_MANUALLYLABELLED_AOI_VISUALIZETRACKING = "    Manually  Labelled AOIs File ";
 
         public static string SAMPLE_OUTPUTFILE_AOI_LABELMANUALLY = "(Sample: D:\\MagicTest\\AOIAnalysis\\1\\correctedFrames.txt)"; 
-        public static string SAMPLE_AVI_AOI_LABELMANUALLY = "(Sample file)";
+        public static string SAMPLE_AVI_AOI_LABELMANUALLY = "(Sample files)";
         public static string SAMPLE_2dLANDMARK_AOI_LABELMANUALLY = "(Sample file)";
         public static string SAMPLE_RAWGAZEDATA_AOI_LABELMANUALLY = "(Sample file)";
         public static string SAMPLE_AOIS_AOI_LABELMANUALLY = "(Sample file)";
@@ -421,7 +421,9 @@ namespace MAGiC
         public static Font FONT_SAMPLESTEXT = new Font("Arial", 11, FontStyle.Bold);
         public static Font FONT_SAMPLES = new Font("Arial", 11, FontStyle.Italic);
 
-        public static string LINK_AVI_FILE = "https://drive.google.com/open?id=0B-DfZx3YFEzgYXhFTVhsM0ltNUE";           
+        // public static string LINK_AVI_FILE = "https://drive.google.com/open?id=0B-DfZx3YFEzgYXhFTVhsM0ltNUE";
+
+        public static string LINK_AVI_FILE = "https://drive.google.com/open?id=0B-DfZx3YFEzgODhhcnUySFZ3MlE";
         public static string LINK_WAV_FILE = "https://drive.google.com/open?id=0B-DfZx3YFEzgYmh3RjZaYTdEZ1k";
         public static string LINK_SEGMENT_AUDIO = "https://drive.google.com/open?id=0B-DfZx3YFEzgeE1KaTQ3QURqWVk";
         public static string LINK_SEGMENT_INTERVAL = "https://drive.google.com/open?id=0B-DfZx3YFEzgaU5yUGMwZWo0MkU";
