@@ -49,8 +49,8 @@ Thank you!
 ### Reference
 
 @article{Arslan Aydin_Kalkan_Acarturk_2018, \
-&nbsp; &nbsp; &nbsp;title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
-		    volume={11}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
+                    volume={11}, \
 		    url={https://bop.unibe.ch/JEMR/article/view/4292}, \
 		    DOI={10.16910/jemr.11.6.2}, \
 		    number={6}, \
