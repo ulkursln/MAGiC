@@ -62,4 +62,4 @@ Thank you!
  **How to Cite**
     
  * **APA:** Arslan Aydin, Ülkü, Kalkan, S., & Acarturk, C. (2018). MAGiC: A multimodal framework for analysing gaze in dyadic communication. Journal of Eye Movement Research, 11(6). https://doi.org/10.16910/jemr.11.6.2
- * **IEEE** Ülkü Arslan Aydin, S. Kalkan, and C. Acarturk, “MAGiC: A multimodal framework for analysing gaze in dyadic communication”, JEMR, vol. 11, no. 6, Nov. 2018.
+ * **IEEE:** Ülkü Arslan Aydin, S. Kalkan, and C. Acarturk, “MAGiC: A multimodal framework for analysing gaze in dyadic communication”, JEMR, vol. 11, no. 6, Nov. 2018.
