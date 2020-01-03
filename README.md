@@ -49,7 +49,7 @@ Thank you!
 ### Reference
 
 @article{Arslan Aydin_Kalkan_Acarturk_2018, \
-title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
+&nbsp; &nbsp; &nbsp;title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
 		    volume={11}, \
 		    url={https://bop.unibe.ch/JEMR/article/view/4292}, \
 		    DOI={10.16910/jemr.11.6.2}, \
@@ -59,7 +59,7 @@ title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}
 		    year={2018}, \
 		    month={Nov.} \
 		}\
- **How to Cite**\
+ **How to Cite**
     
  * **APA:** Arslan Aydin, Ülkü, Kalkan, S., & Acarturk, C. (2018). MAGiC: A multimodal framework for analysing gaze in dyadic communication. Journal of Eye Movement Research, 11(6). https://doi.org/10.16910/jemr.11.6.2
  * **IEEE** Ülkü Arslan Aydin, S. Kalkan, and C. Acarturk, “MAGiC: A multimodal framework for analysing gaze in dyadic communication”, JEMR, vol. 11, no. 6, Nov. 2018.
