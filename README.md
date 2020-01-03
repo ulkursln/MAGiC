@@ -48,11 +48,11 @@ Thank you!
 
 ### Reference
 
-@article{Arslan Aydin_Kalkan_Acarturk_2018, 
-        title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, 
-		    volume={11}, 
-		    url={https://bop.unibe.ch/JEMR/article/view/4292}, 
-		    DOI={10.16910/jemr.11.6.2}, 
+@article{Arslan Aydin_Kalkan_Acarturk_2018, \
+        title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
+		    volume={11}, \
+		    url={https://bop.unibe.ch/JEMR/article/view/4292}, \
+		    DOI={10.16910/jemr.11.6.2}, \
 		    number={6}, 
 		    journal={Journal of Eye Movement Research}, 
 		    author={Arslan Aydin, Ülkü and Kalkan, Sinan and Acarturk, Cengiz}, 
