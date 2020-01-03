@@ -49,16 +49,16 @@ Thank you!
 ### Reference
 
 @article{Arslan Aydin_Kalkan_Acarturk_2018, \
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
-                    volume={11}, \
-		    url={https://bop.unibe.ch/JEMR/article/view/4292}, \
-		    DOI={10.16910/jemr.11.6.2}, \
-		    number={6}, \
-		    journal={Journal of Eye Movement Research}, \
-		    author={Arslan Aydin, Ülkü and Kalkan, Sinan and Acarturk, Cengiz}, \
-		    year={2018}, \
-		    month={Nov.} \
-		}\
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; title={MAGiC: A multimodal framework for analysing gaze in dyadic communication}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; volume={11}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; url={https://bop.unibe.ch/JEMR/article/view/4292}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DOI={10.16910/jemr.11.6.2}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; number={6}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; journal={Journal of Eye Movement Research}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; author={Arslan Aydin, Ülkü and Kalkan, Sinan and Acarturk, Cengiz}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; year={2018}, \
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; month={Nov.} \
+&nbsp; &nbsp; &nbsp; &nbsp; }\
  **How to Cite**
     
  * **APA:** Arslan Aydin, Ülkü, Kalkan, S., & Acarturk, C. (2018). MAGiC: A multimodal framework for analysing gaze in dyadic communication. Journal of Eye Movement Research, 11(6). https://doi.org/10.16910/jemr.11.6.2
